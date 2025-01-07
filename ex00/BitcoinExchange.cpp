@@ -6,13 +6,14 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:19 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/07 18:34:39 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:43:02 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include "colors.hpp"
 
+#include <climits>
 #include <fstream>
 #include <sstream>
 #include <cmath>
@@ -139,6 +140,10 @@ void	display_amount(t_data &data, std::map<std::string, double> mapInput) {
 	double input_amount = mapInput.begin()->second;
 	std::map<std::string, double>::iterator it_closest = data.mapCSV.end();
 
+	if (input_amount > INT_MAX) {
+		std::cout << "\033[31mError: wrong_value\033[0m" << std::endl;
+		return;
+	}
 	for (std::map<std::string, double>::iterator it = data.mapCSV.begin(); it != data.mapCSV.end(); ++it) {
 		if (it->first == input_data) {
 			// std::cout << input_data << std::endl;
@@ -150,7 +155,7 @@ void	display_amount(t_data &data, std::map<std::string, double> mapInput) {
 		}
 	}
 	if (it_closest != data.mapCSV.end())
-		std::cout << "Date: " << it_closest->first << ", Exchange rate: " << it_closest->second << ", Amount: " << input_amount << ", Result: " << (it_closest->second * input_amount) << std::endl;
+		std::cout << YELLOW << "Date: " << it_closest->first << ", Exchange rate: " << it_closest->second << ", Amount: " << input_amount << ", Result: " << (it_closest->second * input_amount) << BOLD_OFF <<std::endl;
 }
 
 /****************************************PARSE LINE TXT - DISPLAY AMOUNT - ERROR*******************************************/
