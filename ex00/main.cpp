@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:24 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/06 17:10:32 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:31:11 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ int main(int argc, char **argv) {
 	try {
 		checker_args(argc, argv);
 		export_csv(data);
-		// for (std::map<std::string, double>::iterator it = data.mapCSV.begin(); it != data.mapCSV.end(); ++it) {
-		// 	std::cout << "Date: " << it->first << ", Taux de change: " << it->second << std::endl;
-		// }
 		convert_btc(data);
 	}
 	catch (std::exception &e) {
