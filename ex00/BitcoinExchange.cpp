@@ -6,11 +6,12 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:19 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/06 18:42:49 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:21:21 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include "colors.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -125,6 +126,25 @@ std::map<std::string, double>	parse_line(std::string &line) {
 	return (inputMap);
 }
 
+void	display_amount(t_data &data, std::map<std::string, double> mapInput) {
+	std::string input_data = mapInput.begin()->first;
+	double input_amount = mapInput.begin()->second;
+	std::map<std::string, double>::iterator it_closest = data.mapCSV.end();
+
+	for (std::map<std::string, double>::iterator it = data.mapCSV.begin(); it != data.mapCSV.end(); ++it) {
+		if (it->first == input_data) {
+			// std::cout << input_data << std::endl;
+			std::cout << GREEN << "Date: " << it->first << ", Exchange rate: " << it->second << ", Amount: " << input_amount << ", Result: " << (it->second * input_amount) << BOLD_OFF << std::endl;
+			return;
+		}
+		else if (it->first < input_data) {
+			it_closest = it;
+		}
+	}
+	if (it_closest != data.mapCSV.end())
+		std::cout << "Date: " << it_closest->first << ", Exchange rate: " << it_closest->second << ", Amount: " << input_amount << ", Result: " << (it_closest->second * input_amount) << std::endl;
+}
+
 void	convert_btc(t_data &data) {
 	
 	(void)data;
@@ -144,9 +164,10 @@ void	convert_btc(t_data &data) {
 		mapInput = parse_line(line);
 		if (mapInput.empty())
 			continue;
-		else
-			std::cout << line << std::endl;
-			//? make conversion
+		else {	
+			// std::cout << line << std::endl;
+			display_amount(data, mapInput);
+		}
 	}
 	file.close();
 }
