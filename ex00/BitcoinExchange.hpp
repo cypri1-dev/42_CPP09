@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:22 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/07 17:37:45 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:25:59 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <exception>
 #include <map>
 #include <string>
+#include <ctime>
+#include <time.h>
+#include <iterator>
 
 #define CSV_FILE "data.csv"
 #define INPUT_FILE "input.txt"
@@ -24,19 +27,18 @@
 /****************************************STRUCTURE*******************************************/
 
 typedef struct s_data {
-	std::map<std::string, double> mapCSV;
+	std::map<time_t, std::pair<std::string, double> > mapCSV;
 } t_data;
 
 /****************************************PROTOTYPES*******************************************/
 
 void	checker_args(int argc, char **argv);
 void	export_csv(t_data &data);
-double	parse_csv_data(std::string date, std::string value_str);
-bool	isValidDate(std::string &date);
-void	convert_btc(t_data &data);
-std::map<std::string, double>	parse_line(std::string &line);
+std::pair<time_t, std::pair<std::string, double> > parse_csv_data(std::string date, std::string value_str);
+void	convert_btc(t_data &data, char **argv);
+std::map<time_t, std::pair<std::string, double> >	parse_line(std::string &line);
 double	parse_input_data(std::string date, std::string amount_str);
-void	dsiplay_amount(t_data &data, std::map<std::string, double> mapInput);
+void	display_amount(t_data &data, std::map<time_t, std::pair<std::string, double> > mapInput);
 
 /****************************************EXCPETIONS*******************************************/
 
