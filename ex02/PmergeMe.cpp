@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 11:58:28 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:01:32 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	parser(int argc, char **argv) {
 	std::vector<int> tab;
 	std::string token;
 	std::size_t i = 1;
-	// bool flag = true;
 	
 	while (argv[i]) {
 		std::istringstream iss(argv[i]);
