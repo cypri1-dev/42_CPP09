@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:52 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 11:36:29 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:54:29 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ class IsNotDigits : public std::exception {
 	public:
 		const char *what()const throw() {
 			return "\033[31mError: This argument must contains only positive numbers!\033[0m";
+		}
+};
+
+class DoubleValueError : public std::exception {
+	public:
+		const char *what()const throw() {
+			return "\033[31mError: This argument must not contains same values!\033[0m";
 		}
 };
 
