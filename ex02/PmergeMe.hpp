@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:52 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 11:54:29 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:19:47 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #define PMERGEME_HPP
 
 #include <exception>
+#include <vector>
 #include <string>
 
-void	parser(int argc, char **argv);
+std::vector<int>	parser_vector(int argc, char **argv);
 bool	ft_isdigit(std::string token);
 
 class NotEnoughtArgs : public std::exception {
