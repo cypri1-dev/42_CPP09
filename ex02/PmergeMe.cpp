@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 13:20:16 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:59:06 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <sstream>
 #include <cstdlib> 
 #include <algorithm>
+
+void	make_pairs(std::vector<int> tab) {
+	
+}
 
 bool	ft_isdigit(std::string token) {
 	
