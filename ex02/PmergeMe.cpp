@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 11:39:18 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:41:07 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	parser(int argc, char **argv) {
 	if (argc < 2)
 		throw NotEnoughtArgs();
 	
-	std::vector<int> tab;
 	std::string token;
 	std::size_t i = 1;
 	while (argv[i]) {
