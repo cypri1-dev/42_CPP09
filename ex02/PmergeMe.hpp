@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:52 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 13:58:16 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:07:03 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 std::vector<int>	parser_vector(int argc, char **argv);
 bool	ft_isdigit(std::string token);
-void	make_pairs(std::vector<int> tab);
+std::vector<std::pair<int, int> >	make_pairs(std::vector<int> tab);
 
 class NotEnoughtArgs : public std::exception {
 	public:
