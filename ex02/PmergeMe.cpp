@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 19:07:24 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:43:40 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ std::vector<std::pair<int, int> >	make_pairs(std::vector<int> tab) {
 	
 	std::vector<std::pair<int, int> > pairs;
 
-	for (size_t i = 0; i + 1 < tab.size(); i+=2)
-		pairs.push_back(std::make_pair(tab[i], tab[i + 1]));
+	for (size_t i = 0; i + 1 < tab.size(); i+=2) {
+		if (tab[i] > tab[i + 1])
+			pairs.push_back(std::make_pair(tab[i], tab[i + 1]));
+		else
+		 	pairs.push_back(std::make_pair(tab[i + 1], tab[i]));
+	}
 	if (tab.size() % 2 != 0)
 		pairs.push_back(std::make_pair(tab.back(), -1));
 	return (pairs);

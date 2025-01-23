@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:45 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/22 19:13:46 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:47:43 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 		for (size_t i = 0; i < tab_pairs.size(); ++i) {
 			std::cout << "(" << tab_pairs[i].first << ", ";
 			if (tab_pairs[i].second == -1)
-				std::cout << "NULL";
+				std::cout << RED << "NULL" << BOLD_OFF;
 			else
 				std::cout << tab_pairs[i].second;
 			std::cout << ")" << std::endl;
