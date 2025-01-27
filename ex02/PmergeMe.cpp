@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/27 11:27:03 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:35:03 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,45 @@
 #include <utility>
 #include <iostream>
 #include <vector>
+
+std::vector<int>	generate_JBST_seq(size_t n) {
+	
+	std::vector<int> seq;
+	int a = 1;
+	int b = 3;
+
+	while(a <= static_cast<int>(n)) {
+		seq.push_back(a);
+		int tmp = a;
+		a = b;
+		b = tmp +b;
+	}
+	std::reverse(seq.begin(), seq.end());
+	return seq;
+}
+
+void	insert_binary(std::vector<int> &main_chain, int b) {
+	std::vector<int>::iterator it = std::lower_bound(main_chain.begin(), main_chain.end(), b);
+	main_chain.insert(it, b);
+}
+
+std::vector<int> insert_B(std::vector<std::pair<int, int> > tab_pairs) {
+	
+	std::vector<int> main_chain;
+	for (size_t i = 0; i < tab_pairs.size(); ++i)
+		main_chain.push_back(tab_pairs[i].first);
+	
+	std::vector<int> JBST_seq = generate_JBST_seq(main_chain.size());
+	
+	for (size_t i = 0; i < JBST_seq.size(); ++i) {
+		int idx = JBST_seq[i] - 1;
+		int b = tab_pairs[idx].second;
+		insert_binary(main_chain, b);
+	}
+	return (main_chain);
+}
+
+/************************************************************************************************/
 
 std::vector<std::pair<int, int> >	merge(std::vector<std::pair<int, int> > left, std::vector<std::pair<int, int> > right) {
 	
@@ -46,7 +85,6 @@ std::vector<std::pair<int, int> >	merge(std::vector<std::pair<int, int> > left, 
 	return (res);
 }
 
-
 std::vector<std::pair<int, int> >	sort_pairs_by_A(std::vector<std::pair<int, int> > tab_pairs) {
 	
 	if (tab_pairs.size() <= 1)
@@ -61,6 +99,8 @@ std::vector<std::pair<int, int> >	sort_pairs_by_A(std::vector<std::pair<int, int
 
 	return merge(left, right);
 }
+
+/************************************************************************************************/
 
 std::vector<std::pair<int, int> >	make_pairs(std::vector<int> tab) {
 	
