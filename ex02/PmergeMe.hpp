@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:52 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/27 19:32:38 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:38:35 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ std::vector<std::pair<int, int> >	sort_pairs_by_A(std::vector<std::pair<int, int
 std::vector<std::pair<int, int> >	merge(std::vector<std::pair<int, int> > left, std::vector<std::pair<int, int> > right);
 std::vector<int>	generate_JBST_order(size_t n);
 void	insert_binary(std::vector<int> &main_chain, int b);
-std::vector<int> insert_B(std::vector<std::pair<int, int> > tab_pairs);
+std::vector<int> insert_B(std::vector<int>, std::vector<std::pair<int, int> > tab_pairs);
 
 class NotEnoughtArgs : public std::exception {
 	public:

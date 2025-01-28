@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/27 19:35:03 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:56:30 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,36 @@ void	insert_binary(std::vector<int> &main_chain, int b) {
 	main_chain.insert(it, b);
 }
 
-std::vector<int> insert_B(std::vector<std::pair<int, int> > tab_pairs) {
+const size_t J[] = {1,  3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525 };
+
+std::vector<int> insert_B(std::vector<int> tab, std::vector<std::pair<int, int> > tab_pairs) {
 	
 	std::vector<int> main_chain;
-	for (size_t i = 0; i < tab_pairs.size(); ++i)
+	for (size_t i = 0; i < tab_pairs.size() - (tab.size() % 2 == 1); ++i)
 		main_chain.push_back(tab_pairs[i].first);
+
+	if ((tab.size() % 2) == 1) {
+		std::swap(tab_pairs[tab_pairs.size() - 1].first, tab_pairs[tab_pairs.size() -1].second);
+	}
+
+	//Insert b1 de facto
+	insert_binary(main_chain, tab_pairs[0].second);
 	
-	std::vector<int> JBST_seq = generate_JBST_seq(main_chain.size());
-	
-	for (size_t i = 0; i < JBST_seq.size(); ++i) {
-		int idx = JBST_seq[i] - 1;
-		int b = tab_pairs[idx].second;
-		insert_binary(main_chain, b);
+	size_t pushed_count = 1;
+	for (int i = 1; i > -1; i++) {
+		if (pushed_count >= tab_pairs.size())
+			break;
+		
+		int j = J[i] - 1 > tab_pairs.size() ? tab_pairs.size() : J[i] - 1;
+		int jm1 = J[i - 1] - 1;
+
+		for (int idx = j; idx > jm1; idx--) {
+			int b = tab_pairs[idx].second;
+			pushed_count++;
+			if (idx >= (int)tab_pairs.size())
+				continue;
+			insert_binary(main_chain, b);
+		}
 	}
 	return (main_chain);
 }
@@ -89,6 +107,7 @@ std::vector<std::pair<int, int> >	sort_pairs_by_A(std::vector<std::pair<int, int
 	
 	if (tab_pairs.size() <= 1)
 		return tab_pairs;
+
 
 	size_t mid = tab_pairs.size() / 2;
 	std::vector<std::pair<int, int> > left(tab_pairs.begin(), tab_pairs.begin() + mid);
