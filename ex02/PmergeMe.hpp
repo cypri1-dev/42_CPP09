@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:52 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/28 12:38:35 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:16:56 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 std::vector<int>	parser_vector(int argc, char **argv);
 bool	ft_isdigit(std::string token);
 std::vector<std::pair<int, int> >	make_pairs(std::vector<int> tab);
-void	print_list(std::vector<int> tab, std::vector<std::pair<int, int> > tab_pairs);
+void	print_result_vector(std::vector<int> tab, std::vector<int> final_tab, double time_exec);
 std::vector<std::pair<int, int> >	sort_pairs_by_A(std::vector<std::pair<int, int> > tab_pairs);
 std::vector<std::pair<int, int> >	merge(std::vector<std::pair<int, int> > left, std::vector<std::pair<int, int> > right);
 std::vector<int>	generate_JBST_order(size_t n);

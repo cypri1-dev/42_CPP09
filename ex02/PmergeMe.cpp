@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/28 13:56:30 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:16:49 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include <utility>
 #include <iostream>
 #include <vector>
+
+/************************************************VECTOR PART************************************************/
 
 std::vector<int>	generate_JBST_seq(size_t n) {
 	
@@ -176,20 +178,23 @@ std::vector<int>	parser_vector(int argc, char **argv) {
 	return (tab);
 }
 
-/************************************************************************************************/
+/********************************************PRINT RESULT****************************************************/
 
-void	print_list(std::vector<int> tab, std::vector<std::pair<int, int> > tab_pairs) {
+void	print_result_vector(std::vector<int> tab, std::vector<int> final_tab, double time_exec) {
 	
-	for (std::vector<int>::iterator it = tab.begin(); it != tab.end(); ++it)
-		std::cout << BLUE << *it << " " << BOLD_OFF;
-	std::cout << std::endl;
-	
-	for (size_t i = 0; i < tab_pairs.size(); ++i) {
-		std::cout << "(" << tab_pairs[i].first << ", ";
-		if (tab_pairs[i].second == -1)
-			std::cout << RED << "NULL" << BOLD_OFF;
-		else
-			std::cout << tab_pairs[i].second;
-		std::cout << ")" << std::endl;
+	std::cout << BOLD_ON BLUE << "Before : " << BOLD_OFF;
+	for (size_t i = 0; i < tab.size(); ++i) {
+		std::cout << tab[i] << " ";
 	}
+	std::cout << std::endl;
+
+	std::cout << BOLD_ON BLUE << "After : " << BOLD_OFF;
+	for (size_t i = 0; i < final_tab.size(); ++i) {
+		if (final_tab[i] == -1)
+			continue;
+		std::cout << final_tab[i] << BOLD_OFF << " ";
+	}
+	std::cout << std::endl;
+
+	std::cout << "Time to process a range of " << tab.size() << " elements with std::" << BOLD_ON << "<vector> : " << BOLD_OFF << time_exec << "us." <<std::endl;
 }
