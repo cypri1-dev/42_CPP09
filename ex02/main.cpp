@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:45 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/28 16:48:39 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:35:12 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,3 @@ int main(int argc, char **argv) {
 	}
 	return (0);
 }
-
-//./PmergeMe `shuf -i 1-100000 -n 100 | tr "\n" " "` >d1; diff d1 <(sort d1)

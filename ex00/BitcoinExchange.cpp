@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:19 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/08 14:35:34 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:51:55 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ time_t dateToTimeStamp(std::string &date) {
 	int year = tm.tm_year + 1900; // L'année dans struct tm commence à 1900
 	int month = tm.tm_mon;		// 0 = Janvier, 11 = Décembre
 
-	// ? Correction pour le mois de février en cas d'année bissextile
+	// ? Correction pour le mois de février en cas d année bissextile
 	if (isLeapYear(year)) {
 		daysInMonth[1] = 29; // Février a 29 jours dans une année bissextile
 	}

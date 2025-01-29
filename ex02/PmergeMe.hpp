@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:52 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/28 16:46:20 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:31:25 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ class DoubleValueError : public std::exception {
 	public:
 		const char *what()const throw() {
 			return "\033[31mError: This argument must not contains same values!\033[0m";
+		}
+};
+
+class OverflowError : public std::exception {
+	public:
+		const char *what()const throw() {
+			return "\033[31mError: Overflow detected!\033[0m";
 		}
 };
 

@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:07:31 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/13 11:36:53 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:22:25 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <iostream>
 #include <stack>
 #include <sstream>
-#include <stdexcept>
 #include <cstdlib> 
 
 int main (int argc, char **argv) {
@@ -35,37 +34,45 @@ int main (int argc, char **argv) {
 	try {
 		while(iss >> token) {
 			if (isdigit(token[0])) {
+				if (std::atoi(token.c_str()) < 0)
+					throw OverflowError();
 				stack.push(std::atoi(token.c_str()));
 			}
 			else if (token == "+" || token == "-" || token == "*" || token == "/") {
 				if (stack.size() < 2)
-					throw std::runtime_error(BOLD_ON RED"Invalid expression" BOLD_OFF);
+					throw InvalidExpressionError();
 				
 				int b = stack.top(); stack.pop();
 				int a = stack.top(); stack.pop();
 				
-				if (token == "+")
+				if (token == "+") {
+					if (checkAdditionOverflow(a, b)) throw OverflowError();
 					stack.push(a + b);
-				else if (token == "-")
+				}
+				else if (token == "-") {
+					if (checkSubtractionOverflow(a, b)) throw OverflowError();
 					stack.push(a - b);
-				else if (token == "*")
+				}
+				else if (token == "*") {
+					if (checkMultiplicationOverflow(a, b)) throw OverflowError();
 					stack.push(a * b);
+				}
 				else if (token == "/") {
-					if (b == 0)
-						throw std::runtime_error(BOLD_ON RED "Division by 0!" BOLD_OFF);
+					if (b == 0) throw DivisionBy0Error();
+					if (checkDivisionOverflow(a, b)) throw OverflowError();
 					stack.push(a / b);
 				}	
 			}
 			else {
-				throw std::runtime_error(BOLD_ON RED "Invalid token" BOLD_OFF);
+				throw InvalidTokenError();
 			}
 		}
 		if (stack.size() != 1)
-			throw std::runtime_error(BOLD_ON RED"Invalid expression" BOLD_OFF);
+			throw InvalidExpressionError();
 		std::cout << stack.top() << std::endl;
 	}
 	catch (const std::exception &e) {
-		std::cerr << BOLD_ON RED "Error: " << BOLD_OFF << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		return (1);
 	}
 	return (0);

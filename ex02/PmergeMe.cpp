@@ -6,13 +6,14 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:26:49 by cyferrei          #+#    #+#             */
-/*   Updated: 2025/01/28 16:45:21 by cyferrei         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:31:34 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include "colors.hpp"
 
+#include <climits>
 #include <cstddef>
 #include <sstream>
 #include <cstdlib> 
@@ -297,11 +298,15 @@ std::vector<int>	parser_vector(int argc, char **argv) {
 	while (argv[i]) {
 		
 		std::istringstream iss(argv[i]);
-		int tmp = -1;
 		iss >> token;
-		
-		if (!ft_isdigit(token) || (tmp = std::atoi(token.c_str())) < 0)
+		if (!ft_isdigit(token))
 			throw IsNotDigits();
+		
+		char *endptr;
+		long tmp = std::strtol(token.c_str(), &endptr, 10);
+		if (*endptr != '\0' || tmp > INT_MAX || tmp < 0)
+			throw OverflowError();
+		
 		if (std::find(tab.begin(), tab.end(), tmp) == tab.end())
 			tab.push_back(tmp);
 		else
